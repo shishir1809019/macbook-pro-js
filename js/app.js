@@ -1,37 +1,63 @@
-function clearData(id) {
-  const data = (document.getElementById(id).innerText = "0");
-  addTotalCost(data);
+// function totalCost() {
+//   const memoryCost = document.getElementById("memory-cost").innerText;
+//   const storageCost = document.getElementById("storage-cost").innerText;
+//   const deliveryCharge = document.getElementById("delivery-charge").innerText;
+//   console.log(memoryCost, storageCost, deliveryCharge);
+//   const grandTotal =
+//     parseInt(memoryCost) + parseInt(storageCost) + parseInt(deliveryCharge);
+//   document.getElementById("total-price").innerText = 1299 + grandTotal;
+// }
+
+function totalCost() {
+  const memoryCost = document.getElementById("memory-cost").innerText;
+  const storageCost = document.getElementById("storage-cost").innerText;
+  const deliveryCharge = document.getElementById("delivery-charge").innerText;
+  const grandTotal =
+    parseInt(memoryCost) + parseInt(storageCost) + parseInt(deliveryCharge);
+  const totalCosts = document.getElementsByClassName("total-price-class");
+  for (let totalCost of totalCosts) {
+    totalCost.innerText = 1299 + grandTotal;
+  }
+}
+
+function updateMemory(cost) {
+  const memoryCost = document.getElementById("memory-cost");
+  const baseMemoryCost = parseInt(memoryCost.innerText);
+  const extraMemoryCost = 0 + cost;
+  memoryCost.innerText = extraMemoryCost;
+  totalCost();
+}
+
+// storage function
+function updateStorage(cost) {
+  const storageCost = document.getElementById("storage-cost");
+  const extraStorageCost = 0 + cost;
+  storageCost.innerText = extraStorageCost;
+  totalCost();
+}
+
+// delivery function
+
+function updateDelivery(cost) {
+  const deliveryCharge = document.getElementById("delivery-charge");
+  const extraDeliveryCharge = 0 + cost;
+  deliveryCharge.innerText = extraDeliveryCharge;
+  totalCost();
 }
 
 //memory section
-document.getElementById("addMemory-16").addEventListener("click", function () {
-  const memoryCost = document.getElementById("memory-cost");
-  const baseMemoryCost = parseInt(memoryCost.innerText);
-  const extraMemoryCost = baseMemoryCost + 180;
-  if (baseMemoryCost == 0) {
-    memoryCost.innerText = extraMemoryCost;
-    addTotalCost(extraMemoryCost);
-  }
-});
-
 document.getElementById("addMemory-8").addEventListener("click", function () {
-  clearData("memory-cost");
+  updateMemory(0);
+});
+document.getElementById("addMemory-16").addEventListener("click", function () {
+  updateMemory(180);
 });
 
 // storage section
-document.getElementById("storage-256GB").addEventListener("click", function () {
-  clearData("storage-cost");
-});
 
-function updateStorage(cost) {
-  const storageCost = document.getElementById("storage-cost");
-  storageCost.innerText = 0;
-  const baseStorageCost = parseInt(storageCost.innerText);
-  const extraStorageCost = baseStorageCost + cost;
-  if (baseStorageCost == 0) {
-    storageCost.innerText = extraStorageCost;
-  }
-}
+document.getElementById("storage-256GB").addEventListener("click", function () {
+  updateStorage(0);
+});
 
 document.getElementById("storage-512GB").addEventListener("click", function () {
   updateStorage(100);
@@ -40,36 +66,14 @@ document.getElementById("storage-1TB").addEventListener("click", function () {
   updateStorage(180);
 });
 
-//Choose your delivery option section
+// delivery  section
 document
   .getElementById("delivery-without-charge")
   .addEventListener("click", function () {
-    clearData("delivery-charge");
+    updateDelivery(0);
   });
 document
   .getElementById("delivery-with-charge")
   .addEventListener("click", function () {
-    const deliveryCharge = document.getElementById("delivery-charge");
-    const baseDeliveryCharge = parseInt(deliveryCharge.innerText);
-
-    if (baseDeliveryCharge == 0) {
-      const extraDeliveryCharge = baseDeliveryCharge + 20;
-      deliveryCharge.innerText = extraDeliveryCharge;
-    }
-
-    /////////////////////////////////////update total
-    const basePrice = document.getElementById("base-price").innerText;
-    const totalPrice = document.getElementById("total-price");
-
-    totalPrice.innerText = parseInt(basePrice) + 20;
+    updateDelivery(20);
   });
-
-// function addTotalCost(charge) {
-//     for (let totalPrice of totalPrices) {
-//       console.log(totalPrice.innerText);
-//       //   if (totalPrice.innerText == 1299) {
-//       const total = parseInt(totalPrice.innerText) + parseInt(charge);
-//       totalPrice.innerText = total;
-//       //   }
-//     }
-// }
