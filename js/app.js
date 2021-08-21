@@ -8,7 +8,9 @@
 //   document.getElementById("total-price").innerText = 1299 + grandTotal;
 // }
 
+//total function
 function totalCost() {
+  document.getElementById("coupon-button").disabled = false;
   const memoryCost = document.getElementById("memory-cost").innerText;
   const storageCost = document.getElementById("storage-cost").innerText;
   const deliveryCharge = document.getElementById("delivery-charge").innerText;
@@ -77,3 +79,16 @@ document
   .addEventListener("click", function () {
     updateDelivery(20);
   });
+
+// apply coupon
+document.getElementById("coupon-button").addEventListener("click", function () {
+  const inputCouponText = document.getElementById("coupon-input");
+  const totalWithCoupon = document.getElementById("total-price");
+  if (inputCouponText.value == "stevekaku") {
+    totalWithCoupon.innerText =
+      parseFloat(totalWithCoupon.innerText) -
+      parseFloat(totalWithCoupon.innerText) / 20;
+    console.log(2 + 3);
+    document.getElementById("coupon-button").disabled = true;
+  }
+});
