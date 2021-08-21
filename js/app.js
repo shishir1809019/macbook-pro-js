@@ -1,6 +1,6 @@
 // total-price updating function
 function UpdateTotalCost() {
-  document.getElementById("coupon-button").disabled = false;
+  document.getElementById("coupon-button").disabled = false; //enable the button
   const memoryCost = document.getElementById("memory-cost").innerText;
   const storageCost = document.getElementById("storage-cost").innerText;
   const deliveryCharge = document.getElementById("delivery-charge").innerText;
